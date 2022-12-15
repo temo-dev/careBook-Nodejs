@@ -20,6 +20,28 @@ import userService from "../services/userService"
   })
  }
 
+let handleGetAllUsers = async (req, res) => {
+  let id = req.body.id//All , ID
+  if (!id){
+    return res.status(500).json({
+      errCode: 1,
+      message:"Missing parameter !",
+      data: []
+    })
+  }  
+
+
+  let users = await userService.getAllUsers(id)
+
+  return res.status(200).json({
+    errCode: 0,
+    message:"",
+    data: users
+  })
+}
+
+
  module.exports = {
-  handleLogin: handleLogin
+  handleLogin: handleLogin,
+  handleGetAllUsers: handleGetAllUsers
  }    
