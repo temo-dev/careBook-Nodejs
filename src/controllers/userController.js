@@ -21,7 +21,7 @@ import userService from "../services/userService"
  }
 
 let handleGetAllUsers = async (req, res) => {
-  let id = req.body.id//All , ID
+  let id = req.query.id//All , ID
   if (!id){
     return res.status(500).json({
       errCode: 1,
