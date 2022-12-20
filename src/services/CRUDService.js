@@ -89,9 +89,9 @@ let updateUserData =  (data) => {
 let deleteById = (userId) => {
   return new Promise(async (resole, reject) => {
     try {
-      const user = await db.User.findOne({where: {id: userId}})
-      if(user){
-        await user.destroy()
+      const userFound = await db.User.findOne({where: {id: userId}})
+      if(userFound){
+        await userFound.destroy()
       }else{
         resole('not found')
       }

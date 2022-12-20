@@ -40,8 +40,32 @@ let handleGetAllUsers = async (req, res) => {
   })
 }
 
+let hanldeCreateNewUser = async (req, res) => {
+  let message = await userService.createNewUser(req.body)
+  return res.status(200).json(message)
+}
 
+let hanldeEditUser = async (req, res) => {
+  let data = req.body
+  let message = await userService.editUser(data)
+  return res.status(200).json(message)
+}
+
+let hanldeDeleteUser = async (req, res) => {
+  if (!req.body.id){
+    return res.status(200).json({
+      errCode: 1,
+      message: 'Missing requied parameters!'
+    })
+  }
+  let message = await userService.deleteUser(req.body.id)
+  console.log(message)
+  return res.status(200).json(message)
+}
  module.exports = {
   handleLogin: handleLogin,
-  handleGetAllUsers: handleGetAllUsers
+  handleGetAllUsers: handleGetAllUsers,
+  hanldeCreateNewUser: hanldeCreateNewUser,
+  hanldeEditUser: hanldeEditUser,
+  hanldeDeleteUser:hanldeDeleteUser
  }    
